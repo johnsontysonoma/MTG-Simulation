@@ -1,6 +1,8 @@
 package com.MTG_Sim;
 
 import static com.MTG_Sim.Biblioplex.cardPull;
+import static com.MTG_Sim.Library.buildDeck;
+import static com.MTG_Sim.Library.parseDeckList;
 
 public class battlefield {
 
@@ -28,12 +30,16 @@ public class battlefield {
 
     public static void main(String[] args) {
 
-        Card c1 = cardPull("Walking Corpse");
+        Card c1 = cardPull("Platinum Angel");
 
         Card c2 = cardPull("Walking Corpse");
 
         System.out.println(combatDamage(c1, c2));
 
+        //Card.cardReadout(c1);
+        System.out.println(c1.getRulestext());
+
+        buildDeck(parseDeckList("deck example purphoros.txt"));
     }
 
 
