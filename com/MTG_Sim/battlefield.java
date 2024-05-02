@@ -1,10 +1,10 @@
 package com.MTG_Sim;
 
-import java.util.Arrays;
+import static com.MTG_Sim.Biblioplex.cardPull;
 
 public class battlefield {
 
-    public static String combatDamage(Creature attacker, Creature blocker) {
+    public static String combatDamage(Card attacker, Card blocker) {
         int atkHP = attacker.getToughness();
         int defHP = blocker.getToughness();
         int atkPower = attacker.getPower();
@@ -28,13 +28,9 @@ public class battlefield {
 
     public static void main(String[] args) {
 
-        Creature c1 = new Creature("Brudiclad, Telchor Engineer", 6, 4, 4);
+        Card c1 = cardPull("Walking Corpse");
 
-        System.out.println(c1.name);
-        System.out.println(c1.cmc);
-
-        Creature c2 = new Creature("Bearer of Memory", 3, 3, 2);
-
+        Card c2 = cardPull("Walking Corpse");
 
         System.out.println(combatDamage(c1, c2));
 

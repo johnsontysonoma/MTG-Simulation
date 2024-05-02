@@ -5,14 +5,14 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 import java.io.*;
-import java.util.Arrays;
 
 public class Biblioplex {
 
-    public static String[] cardPull(String filePath, String cardName) {
+    public static Card cardPull(String cardName) {
+        String filePath = "allCardsTrimmed.csv";
         int lineNumber = 1;
-        String[] cardData = new String[8];
 
+        //String[] cardData = new String[8];
         try (Reader reader = new FileReader(filePath)) {
             CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
 
@@ -20,17 +20,18 @@ public class Biblioplex {
                 // Check cardName in the 37th column (index 36)
                 String value = csvRecord.get(36);
                 if (value.equalsIgnoreCase(cardName)) {
-                    cardData[0] = csvRecord.get(36);
-                    cardData[1] = csvRecord.get(56);
-                    cardData[2] = csvRecord.get(55);
-                    cardData[3] = csvRecord.get(35);
-                    cardData[4] = csvRecord.get(43);
-                    cardData[5] = csvRecord.get(58);
-                    cardData[6] = csvRecord.get(40);
-                    cardData[7] = csvRecord.get(27);
-                    //System.out.println(Arrays.toString(cardData));
+                    String name = csvRecord.get(36);
+                    String supertype = csvRecord.get(56);
+                    String type = csvRecord.get(55);
+                    int cmc = Integer.parseInt(csvRecord.get(35));
+                    int power = Integer.parseInt(csvRecord.get(35));
+                    int toughness = Integer.parseInt(csvRecord.get(35));
+                    String rulestext = csvRecord.get(40);
+                    String keywords = csvRecord.get(27);
 
-                    return cardData;
+                    Card card = new Card(name, supertype, type, cmc, power, toughness, rulestext, keywords);
+
+                    return card;
                 }
 
                 lineNumber++;
@@ -42,30 +43,28 @@ public class Biblioplex {
         return null; // Card not found
     }
 
-    public static void cardReadout(String[] cardData) {
+    public static void cardReadout(Card card) {
 
-        System.out.println("Name: " + cardData[0]);
-        System.out.println("Supertype: " + cardData[1]);
-        System.out.println("Type: " + cardData[2]);
-        System.out.println("CMC: " + cardData[3]);
-        System.out.println("Power: " + cardData[4]);
-        System.out.println("Toughness: " + cardData[5]);
-        System.out.println("Rules Text: " + cardData[6]);
-        System.out.println("Keywords: " + cardData[7]);
+        System.out.println("Name: " + card.getName());
+        System.out.println("Supertype: " + card.getSupertype());
+        System.out.println("Type: " + card.getType());
+        System.out.println("CMC: " + card.getCmc());
+        System.out.println("Power: " + card.getPower());
+        System.out.println("Toughness: " + card.getToughness());
+        System.out.println("Rules Text: " + card.getRulestext());
+        System.out.println("Keywords: " + card.getKeywords());
 
     }
 
-    public static Card createCardFromPull(String[] cardStats) {
-
-        //Card card = new Card(cardStats[0], cardStats[1], cardStats[2], Integer.parseInt(cardStats[3]), Integer.parseInt(cardStats[4]), Integer.parseInt(cardStats[5]), cardStats[6], cardStats[7]);
-
-        return new Card(cardStats[0], cardStats[1], cardStats[2], Integer.parseInt(cardStats[3]), Integer.parseInt(cardStats[4]), Integer.parseInt(cardStats[5]), cardStats[6], cardStats[7]);
-    }
-
-//    public static void main(String[] args) {
-//        String[] cardData = cardPull("allCardsTrimmed.csv", "Brudiclad, Telchor Engineer");
-//        cardReadout(cardData);
+//    public static Card createCardFromPull(String[] cardStats) {
 //
-//        Card Sol_Ring = new Card(createCardFromPull(cardPull("allCardsTrimmed.csv", "Sol Ring")));
+//        //Card card = new Card(cardStats[0], cardStats[1], cardStats[2], Integer.parseInt(cardStats[3]), Integer.parseInt(cardStats[4]), Integer.parseInt(cardStats[5]), cardStats[6], cardStats[7]);
+//
+//        return new Card(cardStats[0], cardStats[1], cardStats[2], Integer.parseInt(cardStats[3]), Integer.parseInt(cardStats[4]), Integer.parseInt(cardStats[5]), cardStats[6], cardStats[7]);
 //    }
+
+    public static void main(String[] args) {
+        Card Brudiclad_Telchor_Engineer= cardPull("Brudiclad, Telchor Engineer");
+        cardReadout(Brudiclad_Telchor_Engineer);
+    }
 }
