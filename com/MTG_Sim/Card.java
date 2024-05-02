@@ -11,7 +11,7 @@ public class Card {
     String rulestext;
     String keywords;
 
-    public Card(String name, String type, String supertype, int cmc, int power, int toughness, String rulestext, String keywords) {
+    public Card(String name, String supertype, String type, int cmc, int power, int toughness, String rulestext, String keywords) {
         this.name = name;
         this.type = type;
         this.supertype = supertype;

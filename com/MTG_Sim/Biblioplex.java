@@ -55,9 +55,17 @@ public class Biblioplex {
 
     }
 
-    public static void main(String[] args) {
-        String[] cardData = cardPull("allCardsTrimmed.csv", "Brudiclad, Telchor Engineer");
+    public static Card createCardFromPull(String[] cardStats) {
 
-        cardReadout(cardData);
+        //Card card = new Card(cardStats[0], cardStats[1], cardStats[2], Integer.parseInt(cardStats[3]), Integer.parseInt(cardStats[4]), Integer.parseInt(cardStats[5]), cardStats[6], cardStats[7]);
+
+        return new Card(cardStats[0], cardStats[1], cardStats[2], Integer.parseInt(cardStats[3]), Integer.parseInt(cardStats[4]), Integer.parseInt(cardStats[5]), cardStats[6], cardStats[7]);
     }
+
+//    public static void main(String[] args) {
+//        String[] cardData = cardPull("allCardsTrimmed.csv", "Brudiclad, Telchor Engineer");
+//        cardReadout(cardData);
+//
+//        Card Sol_Ring = new Card(createCardFromPull(cardPull("allCardsTrimmed.csv", "Sol Ring")));
+//    }
 }
