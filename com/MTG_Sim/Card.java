@@ -22,6 +22,20 @@ public class Card {
         this.keywords = keywords;
     }
 
+    // simple method to print out the data of any card
+    public static void cardReadout(Card card) {
+
+        System.out.println("Name: " + card.getName());
+        System.out.println("Supertype: " + card.getSupertype());
+        System.out.println("Type: " + card.getType());
+        System.out.println("CMC: " + card.getCmc());
+        System.out.println("Power: " + card.getPower());
+        System.out.println("Toughness: " + card.getToughness());
+        System.out.println("Rules Text: " + card.getRulestext());
+        System.out.println("Keywords: " + card.getKeywords());
+
+    }
+
     public String getName() {
         return name;
     }
